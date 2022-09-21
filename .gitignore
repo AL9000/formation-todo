@@ -1,0 +1,14 @@
+# Python
+*.pyc
+__pycache__
+*.egg-info
+*.mo
+
+# Virtualenv
+/venv/
+
+# statics
+/static/
+
+# DB Files
+*.sqlite3

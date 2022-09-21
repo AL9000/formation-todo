@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Search tasks
+{% endblock %}
+
+{% block content %}
+  <h1>Search tasks</h1>
+  <form action="" method="GET">
+    {{ form.as_p }}
+    <input type="submit" value="OK"/>
+  </form>
+
+  {% if tasks %}
+    <ul>
+      {% for task in tasks %}
+        <li><a href="{% url 'tasks:task_detail' task.pk %}">{{ task }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks !</p>
+  {% endif %}
+
+{% endblock %}

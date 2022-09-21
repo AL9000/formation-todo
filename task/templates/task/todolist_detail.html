@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ todolist.label }}
+{% endblock %}
+
+{% block content %}
+  <h1>Todo list : {{ todolist.label }} </h1>
+  <h2>Tasks</h2>
+
+  <h3>Liste des utilisateurs liés à cette liste</h3>
+  <ul>
+    {% for user in todolist.users.all %}
+      <li>{{ user }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Liste des tâches liées à cette liste</h3>
+  <ul>
+    {% for task in todolist.tasks.all %}
+      <li><a href="{% url 'tasks:task_detail' task.pk %}">{{ task }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

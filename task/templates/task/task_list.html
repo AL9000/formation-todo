@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Tasks list
+{% endblock %}
+
+{% block content %}
+  <h1>Tasks list</h1>
+
+  {% if object_list %}
+    <ul>
+      {% for task in object_list %}
+        <li><a href="{% url 'tasks:task_detail' task.pk %}">{{ task }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks !</p>
+  {% endif %}
+
+  <p>
+    <a href="{% url 'tasks:add_task' %}">Add task</a>
+  </p>
+
+{% endblock %}

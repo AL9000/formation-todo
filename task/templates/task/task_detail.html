@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load task_filters %}
+
+
+{% block title %}
+  {{ task.name }}
+{% endblock %}
+
+{% block content %}
+  <h1>Task : {{ task.name }} </h1>
+  <p>We are on : {% now "SHORT_DATETIME_FORMAT" %}</p>
+  <dl>
+    <dt>Description</dt><dd>{{ task.description|linebreaksbr }}</dd>
+    <dt>Deadline</dt><dd>{{ task.deadline|date:"d/m/Y" }}</dd>
+    <dt>Time left</dt><dd>{{ task.deadline|time_left }}</dd>
+    <dt>Done</dt><dd>{{ task.done|yesno:"Oui,Non" }}</dd>
+    <dt>Belongs to the following list:</dt><dd>{{ task.todo_list.label }}</dd>
+  </dl>
+  <p>
+    <a href="{% url 'tasks:edit_task' task.pk %}">Edit task</a>
+  </p>
+{% endblock %}

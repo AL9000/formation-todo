@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Add task
+{% endblock %}
+
+{% block content %}
+  <h1>Add task</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="OK"/>
+  </form>
+{% endblock %}
+
+{% block javascript %}
+  <script>
+    $("#id_name").change(function () {
+      var name = $(this).val();
+
+      $.ajax({
+        url: '/ajax/validate_task_name/',
+        data: {'task_name': name},
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) console.log("A task with this name already exists.");
+        }
+      });
+    });
+  </script>
+{% endblock %}
